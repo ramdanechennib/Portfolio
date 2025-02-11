@@ -69,30 +69,6 @@ img {
   height: auto;
   display: block;
 }
-.home__img .img {
-    width: 400px;
-    height: 400px;
-    border-radius: 80%;
-    overflow: hidden;
-    border: 10px solid var(--first-color);
-    margin: 0 auto;
-
-    /* إضافة ظل مزدوج ناعم */
-    box-shadow: 
-        0 4px 10px rgba(0, 0, 0, 0.2),  /* ظل أساسي ناعم */
-        0 8px 20px rgba(0, 0, 0, 0.1);  /* ظل إضافي خفيف لنعومة أكبر */
-    
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* تأثير عند تمرير الماوس (Hover Effect) */
-.home__img .img:hover {
-    transform: scale(1.03); /* تكبير خفيف لجعل التأثير أكثر ديناميكية */
-    box-shadow: 
-        0 6px 15px rgba(0, 0, 0, 0.3),
-        0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
 
 /*===== CLASS CSS ===== */
 .section-title {
