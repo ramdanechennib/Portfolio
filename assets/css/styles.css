@@ -93,11 +93,6 @@ img {
         0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.home__img .img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 /*===== CLASS CSS ===== */
 .section-title {
@@ -208,149 +203,46 @@ img {
 }
 
 /*===== HOME =====*/
-/*===== HOME =====*/
 .home {
   position: relative;
   row-gap: 5rem;
   padding: 4rem 0 5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
-
 .home__data {
   align-self: center;
 }
-
 .home__title {
   font-size: var(--big-font-size);
   margin-bottom: var(--mb-5);
 }
-
 .home__title-color {
   color: var(--first-color);
 }
-
 .home__social {
   display: flex;
   flex-direction: column;
 }
-
 .home__social-icon {
   width: max-content;
   margin-bottom: var(--mb-2);
   font-size: 1.5rem;
   color: var(--second-color);
-  transition: color 0.3s ease;
 }
-
 .home__social-icon:hover {
   color: var(--first-color);
 }
-
 .home__img {
   position: absolute;
   right: 0;
   bottom: 0;
   width: 260px;
 }
-
 .home__blob {
   fill: var(--first-color);
 }
-
 .home__blob-img {
   width: 360px;
 }
-
-/*===== RESPONSIVE DESIGN FOR MOBILE =====*/
-@media screen and (max-width: 768px) {
-  .home {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem 1rem;
-  }
-
-  .home__title {
-    font-size: var(--h1-font-size);
-    margin-bottom: var(--mb-3);
-  }
-
-  .home__social {
-    flex-direction: row;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .home__social-icon {
-    font-size: 2rem;
-  }
-
-  .home__img {
-    position: relative;
-    width: 200px;
-    margin-top: 2rem;
-  }
-
-  .home__blob-img {
-    width: 150px;
-  }
-  .button {
-    padding: 0.5rem 2rem;  /* تصغير الأزرار قليلاً */
-    font-size: 1rem;       /* تقليل حجم الخط */
-    border-radius: 0.4rem;
-  }
-
-  .about__container {
-    padding: 1.5rem 1rem;
-    row-gap: 1.5rem;
-  }
-
-  .about__subtitle {
-    font-size: var(--h3-font-size);
-    margin-bottom: var(--mb-1);
-  }
-
-  .about__img img {
-    width: 150px;  /* تصغير الصورة للشاشات الصغيرة */
-    border-radius: 0.4rem;
-  }
-  .skills__container {
-    padding: 1.5rem 1rem;
-    row-gap: 1.5rem;
-  }
-
-  .skills__subtitle {
-    font-size: var(--h3-font-size);
-    margin-bottom: var(--mb-1);
-  }
-
-  .skills__data {
-    flex-direction: column; /* ترتيب العناصر عموديًا على الشاشات الصغيرة */
-    align-items: flex-start; 
-    padding: 0.75rem;
-  }
-
-  .skills__icon {
-    font-size: 1.5rem; /* تصغير الأيقونات */
-    margin-bottom: 0.5rem;
-  }
-
-  .skills__names {
-    font-size: 1rem; /* تصغير حجم النص */
-  }
-
-  .skills__bar {
-    height: 0.2rem; /* تقليل سماكة الشرائط */
-  }
-
-  .skills__img {
-    width: 150px;  /* تصغير الصور */
-  }
-}
-
 
 /*BUTTONS*/
 .button {
@@ -632,52 +524,6 @@ img {
   .nav__link {
     color: var(--second-color);
   }
-  .nav__toggle {
-    display: block; /* إظهار زر القائمة في الهواتف */
-  }
-
-  .nav__menu {
-    position: fixed;
-    top: var(--header-height);
-    right: -100%; /* إخفاء القائمة خارج الشاشة */
-    width: 80%;
-    height: 100vh;
-    padding: 2rem 1.5rem;
-    background-color: var(--second-color);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    transition: right 0.3s ease-in-out;
-    z-index: 1000;
-  }
-
-  .nav__menu.show {
-    right: 0; /* عند تفعيل القائمة تظهر من الجانب */
-  }
-
-  .nav__list {
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .nav__item {
-    width: 100%;
-  }
-
-  .nav__link {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    background-color: var(--first-color);
-    color: #fff;
-  }
-
-  .nav__link:hover {
-    background-color: var(--hover-color);
-    color: #fff;
-  }
   .home {
     padding: 8rem 0 2rem;
   }
@@ -714,4 +560,3 @@ img {
     width: 450px;
   }
 }
-
