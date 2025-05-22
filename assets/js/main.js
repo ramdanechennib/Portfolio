@@ -56,14 +56,23 @@ sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
 document.addEventListener('DOMContentLoaded', () => {
-    const video = document.querySelector('.hover-play');
+    const mediaElement = document.querySelector('.hover-play');
 
-    video.addEventListener('mouseover', () => {
-        video.play();
-    });
+    if (!mediaElement) return; // تأكد أن العنصر موجود
 
-    video.addEventListener('mouseout', () => {
-        video.pause();
-        video.currentTime = 0; 
-    });
+    if (mediaElement.tagName.toLowerCase() === 'video') {
+        // إذا كان العنصر فيديو، أضف أحداث التشغيل والإيقاف
+        mediaElement.addEventListener('mouseover', () => {
+            mediaElement.play();
+        });
+
+        mediaElement.addEventListener('mouseout', () => {
+            mediaElement.pause();
+            mediaElement.currentTime = 0;
+        });
+    } else if (mediaElement.tagName.toLowerCase() === 'img') {
+        // إذا كان العنصر صورة، لا تفعل شيئًا (سيتم عرضها بشكل طبيعي)
+        console.log("العنصر هو صورة، لا حاجة لتشغيله.");
+    }
 });
+
