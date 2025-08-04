@@ -1,78 +1,111 @@
-/*===== MENU SHOW =====*/ 
-const showMenu = (toggleId, navId) =>{
-    const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId)
+// Effet de texte animé
+const typed = new Typed('.multiple-text', {
+    strings: ['Développeur Full Stack', 'Designer UI/UX', 'Freelancer'],
+    typeSpeed: 100,
+    backSpeed: 50,
+    backDelay: 1000,
+    loop: true
+});
 
-    if(toggle && nav){
-        toggle.addEventListener('click', ()=>{
-            nav.classList.toggle('show')
-        })
-    }
-}
-showMenu('nav-toggle','nav-menu')
+// Curseur personnalisé
+const cursor = document.querySelector('.cursor');
 
-/*==================== REMOVE MENU MOBILE ====================*/
-const navLink = document.querySelectorAll('.nav__link')
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
 
-function linkAction(){
-    const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
-    navMenu.classList.remove('show')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
+// Menu mobile
+const menuToggle = document.querySelector('.menu-toggle');
+const navbar = document.querySelector('.navbar');
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-const sections = document.querySelectorAll('section[id]')
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navbar.classList.toggle('active');
+});
 
-const scrollActive = () =>{
-    const scrollDown = window.scrollY
+// Changement de couleur du header au scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    header.classList.toggle('sticky', window.scrollY > 0);
+    
+    // Fermer le menu mobile lors du scroll
+    menuToggle.classList.remove('active');
+    navbar.classList.remove('active');
+});
 
-  sections.forEach(current =>{
-        const sectionHeight = current.offsetHeight,
-              sectionTop = current.offsetTop - 58,
-              sectionId = current.getAttribute('id'),
-              sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
-        
-        if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
-            sectionsClass.classList.add('active-link')
-        }else{
-            sectionsClass.classList.remove('active-link')
-        }                                                    
-    })
-}
-window.addEventListener('scroll', scrollActive)
-
-/*===== SCROLL REVEAL ANIMATION =====*/
-const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
+// Animation au scroll
+ScrollReveal({
+    reset: true,
+    distance: '80px',
     duration: 2000,
-    delay: 200,
-//     reset: true
+    delay: 200
 });
 
-sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
-sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
-sr.reveal('.home__social-icon',{ interval: 200}); 
-sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
-document.addEventListener('DOMContentLoaded', () => {
-    const mediaElement = document.querySelector('.hover-play');
+ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
+ScrollReveal().reveal('.home-img, .services-container, .portfolio-container, .contact form', { origin: 'bottom' });
+ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
+ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
 
-    if (!mediaElement) return; // تأكد أن العنصر موجود
+// Effet de surbrillance au survol des liens
+const links = document.querySelectorAll('a, button, .services-box, .portfolio-box');
 
-    if (mediaElement.tagName.toLowerCase() === 'video') {
-        // إذا كان العنصر فيديو، أضف أحداث التشغيل والإيقاف
-        mediaElement.addEventListener('mouseover', () => {
-            mediaElement.play();
-        });
-
-        mediaElement.addEventListener('mouseout', () => {
-            mediaElement.pause();
-            mediaElement.currentTime = 0;
-        });
-    } else if (mediaElement.tagName.toLowerCase() === 'img') {
-        // إذا كان العنصر صورة، لا تفعل شيئًا (سيتم عرضها بشكل طبيعي)
-        console.log("العنصر هو صورة، لا حاجة لتشغيله.");
-    }
+links.forEach(link => {
+    link.addEventListener('mouseover', () => {
+        cursor.classList.add('link-grow');
+    });
+    
+    link.addEventListener('mouseleave', () => {
+        cursor.classList.remove('link-grow');
+    });
 });
 
+// Animation des compétences
+const skillBars = document.querySelectorAll('.skill-level');
+
+function animateSkills() {
+    skillBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 100);
+    });
+}
+
+// Observer pour déclencher l'animation des compétences
+const aboutSection = document.querySelector('.about');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateSkills();
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+observer.observe(aboutSection);
+
+// Envoi du formulaire
+const contactForm = document.querySelector('form');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Simulation d'envoi
+    const btn = contactForm.querySelector('button');
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        btn.textContent = 'Message envoyé!';
+        btn.style.backgroundColor = '#4CAF50';
+        contactForm.reset();
+        
+        setTimeout(() => {
+            btn.textContent = 'Envoyer';
+            btn.style.backgroundColor = '';
+            btn.disabled = false;
+        }, 2000);
+    }, 1500);
+});
